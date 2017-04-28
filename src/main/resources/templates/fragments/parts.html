@@ -24,13 +24,20 @@
                         <li>
                             <a href="#">Sales</a>
                         </li>
+                        <li sec:authorize="hasRole('ADMIN')">
+                            <a href="/users">Users</a>
+                        </li>
+
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <a href="#">Login</a>
+                        <li class="nav-item pull-xs-right" sec:authorize="isAnonymous()">
+                            <a class="nav-link" href="/login">Login</a>
+                        </li>
+                        <li class="nav-item pull-xs-right" sec:authorize="isAuthenticated()">
+                            <a class="nav-link" href="/logout" th:text="|Logout, ${#authentication.getName()}|">Logout</a>
                         </li>
                         <li>
-                            <a href="#">Register</a>
+                            <a href="/register">Register</a>
                         </li>
                         <li>
                             <a href="#">Cart ( 0 )</a>

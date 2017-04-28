@@ -15,7 +15,7 @@
         <link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'/>
         <link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'/>
 
-        <title>Admin</title>
+        <title>Register</title>
     </head>
     <body>
         <header th:replace="fragments/parts::menu">
@@ -29,50 +29,55 @@
                     </div>
                 </div>
                 <div class="main-login main-center">
-                    <form class="form-horizontal" method="post" action="#">
+                    <form class="form-horizontal" method="post" th:object="${registerUserBindingModel}">
 
-                        <div class="form-group">
+                        <div class="form-group" th:classappend="${#fields.hasErrors('username')}? 'no-margin'">
                             <label for="username" class="cols-sm-2 control-label">Username</label>
                             <div class="cols-sm-10">
-                                <div class="input-group">
+                                <div class="input-group" th:classappend="${#fields.hasErrors('username')}? 'error-message-beneath'">
                                     <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"/>
+                                    <input type="text" class="form-control" name="username" id="username"  placeholder="Enter your Username"
+                                           th:field="*{username}"/>
                                 </div>
+                                <div class="error-message" th:each="error : ${#fields.errors('username')}" th:text="${error}"></div>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" th:classappend="${#fields.hasErrors('email')}? 'no-margin'">
                             <label for="email" class="cols-sm-2 control-label">Your Email</label>
                             <div class="cols-sm-10">
-                                <div class="input-group">
+                                <div class="input-group" th:classappend="${#fields.hasErrors('email')}? 'error-message-beneath'">
                                     <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                    <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+                                    <input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email" th:field="*{email}"/>
                                 </div>
+                                <div class="error-message" th:each="error : ${#fields.errors('email')}" th:text="${error}"></div>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" th:classappend="${#fields.hasErrors('password')}? 'no-margin'">
                             <label for="password" class="cols-sm-2 control-label">Password</label>
                             <div class="cols-sm-10">
-                                <div class="input-group">
+                                <div class="input-group" th:classappend="${#fields.hasErrors('password')}? 'error-message-beneath'">
                                     <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                    <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password"/>
+                                    <input type="password" class="form-control" name="password" id="password"  placeholder="Enter your Password" th:field="*{password}"/>
                                 </div>
+                                <div class="error-message" th:each="error : ${#fields.errors('password')}" th:text="${error}"></div>
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group" th:classappend="${#fields.hasErrors('global')}? 'no-margin'">
                             <label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
                             <div class="cols-sm-10">
-                                <div class="input-group">
+                                <div class="input-group" th:classappend="${#fields.hasErrors('global')}? 'error-message-beneath'">
                                     <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                    <input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password"/>
+                                    <input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm your Password" th:field="*{confirmPassword}"/>
                                 </div>
+                                <div class="error-message" th:each="error : ${#fields.errors('global')}" th:text="${error}"></div>
                             </div>
                         </div>
 
                         <div class="form-group ">
-                            <button type="button" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+                            <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
                         </div>
                         <div class="login-register">
                             <a href="index.php">Login</a>

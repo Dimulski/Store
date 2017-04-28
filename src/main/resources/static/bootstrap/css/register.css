@@ -70,3 +70,15 @@ input::-webkit-input-placeholder {
     font-size: 11px;
     text-align: center;
 }
+
+.error-message-beneath{
+    padding-bottom: 10px;
+}
+
+.error-message{
+    color: red;
+}
+
+.no-margin{
+    margin-bottom: 0px;
+}
