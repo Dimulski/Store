@@ -52,9 +52,19 @@ public class UserServiceImpl implements UserService {
         List<User> users = this.userRepository.findAll();
         for (User user : users) {
             UserViewModel userViewModel = this.modelMapper.map(user, UserViewModel.class);
+            setIsAdmin(user, userViewModel);
             userViewModels.add(userViewModel);
         }
 
         return userViewModels;
+    }
+
+    private void setIsAdmin(User user, UserViewModel userViewModel) {
+        if (user.getAuthorities().stream().filter(r -> r.getAuthority().equals("ROLE_ADMIN"))
+                .findFirst().orElse(null) != null) {
+            userViewModel.setIsAdmin(true);
+        } else {
+            userViewModel.setIsAdmin(false);
+        }
     }
 }

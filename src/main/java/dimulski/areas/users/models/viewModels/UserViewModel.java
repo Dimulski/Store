@@ -6,7 +6,9 @@ public class UserViewModel {
 
     private String username;
 
-    private Boolean isEnabled;
+    private String email;
+
+    private Boolean isAdmin;
 
     public Long getId() {
         return id;
@@ -24,11 +26,19 @@ public class UserViewModel {
         this.username = username;
     }
 
-    public Boolean isEnabled() {
-        return isEnabled;
+    public String getEmail() {
+        return email;
     }
 
-    public void setEnabled(Boolean enabled) {
-        isEnabled = enabled;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(Boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }
