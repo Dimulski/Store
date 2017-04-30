@@ -1,57 +1,53 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'/>
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet"/>
+    
     <head>
         <meta charset="UTF-8"/>
         <title>Edit User</title>
-        <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.min.css}"/>
+        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="../../bootstrap/css/users.css"/>
     </head>
     <body>
         <header th:replace="fragments/parts::menu">
         </header>
-        <form class="form-horizontal">
-            <fieldset>
-                <!-- Form Name -->
-                <legend></legend>
-
-                <!-- Text input-->
+        <main>
+            <form method="post" class="form-horizontal top-space" th:object="${editUserBindingModel}">
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="username">Name</label>
                     <div class="col-md-3">
-                        <input id="username" name="username" placeholder="Username" class="form-control input-md" type="text">
-                        <span class="help-block">The users name</span>
+                        <input id="username" name="username" class="form-control input-md" 
+                               type="text" th:field="*{username}" th:value="*{username}"/>
                     </div>
                 </div>
 
-                <!-- Text input-->
                 <div class="form-group">
                     <label class="col-md-4 control-label" for="email">Email</label>
                     <div class="col-md-3">
-                        <input id="email" name="email" placeholder="Email" class="form-control input-md" type="text">
-                        <span class="help-block">User's email</span>
+                        <input id="email" name="email" class="form-control input-md"
+                               type="text" th:field="*{email}" th:value="*{email}"/>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="col-md-4 control-label">Is Admin</label>
+                    <div class="col-md-1">
+                        <input type="checkbox" data-toggle="toggle" name="isAdmin"
+                               th:field="*{isAdmin}" th:value="*{isAdmin}"/>
                     </div>
                 </div>
 
-                <!-- Text input-->
                 <div class="form-group">
-                    <label class="col-md-4 control-label" for="password">Password</label>
-                    <div class="col-md-3">
-                        <input id="password" name="password" placeholder="Password" class="form-control input-md" type="text">
-                        <span class="help-block">User's password</span>
+                    <label class="col-md-4 control-label"></label>
+                    <div class="col-md-8">
+                        <button type="submit" id="btnSave" name="btnSave" class="btn btn-success">Save</button>
                     </div>
                 </div>
-
-                <!-- Text input-->
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="someSwitchOptionPrimary">Is Admin</label>
-                    <div class="col-md-2">
-                            <div class="material-switch pull-right">
-                                <input id="someSwitchOptionPrimary" name="someSwitchOption001" type="checkbox"/>
-                                <label for="someSwitchOptionPrimary" class="label-primary"></label>
-                            </div>
-                        <span class="help-block">Is user admin</span>
-                    </div>
-                </div>
-            </fieldset>
-        </form>
+            </form>
+        </main>
+        <script th:src="@{/bootstrap/js/jquery.js}"></script>
+        <script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
     </body>
 </html>

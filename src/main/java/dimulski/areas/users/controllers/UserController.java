@@ -1,19 +1,15 @@
 package dimulski.areas.users.controllers;
 
-import dimulski.areas.users.models.bindingModels.LoginUserBindingModel;
+import dimulski.areas.users.models.bindingModels.EditUserBindingModel;
 import dimulski.areas.users.models.bindingModels.RegisterUserBindingModel;
 import dimulski.areas.users.models.viewModels.UserViewModel;
 import dimulski.areas.users.service.contracts.UserService;
-import org.hibernate.annotations.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.tags.Param;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -56,5 +52,27 @@ public class UserController { // should be split
         model.addAttribute("users", userViewModels);
 
         return "users";
+    }
+
+    @GetMapping("/users/edit/{userId}")
+    public String getEditUserPage(@PathVariable long userId, Model model) {
+        EditUserBindingModel editUserBindingModel = this.userService.findById(userId);
+        model.addAttribute("editUserBindingModel", editUserBindingModel);
+        
+        return "users-edit";
+    }
+    
+    @PostMapping("/users/edit/{userId}")
+    public String getEditVirusPage(@PathVariable long userId,
+                                   @Valid @ModelAttribute EditUserBindingModel editUserBindingModel, 
+                                   BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "users-edit";
+        }
+        
+        editUserBindingModel.setId(userId);
+        this.userService.save(editUserBindingModel);
+        
+        return "redirect:/users";
     }
 }

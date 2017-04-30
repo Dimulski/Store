@@ -1,14 +1,14 @@
 package dimulski.areas.users.models.viewModels;
 
-public class UserViewModel {
+import dimulski.areas.users.models.contracts.BasicUserModel;
+
+public class UserViewModel extends BasicUserModel {
 
     private Long id;
 
     private String username;
 
     private String email;
-
-    private Boolean isAdmin;
 
     public Long getId() {
         return id;
@@ -32,13 +32,5 @@ public class UserViewModel {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public Boolean getIsAdmin() {
-        return isAdmin;
-    }
-
-    public void setIsAdmin(Boolean isAdmin) {
-        this.isAdmin = isAdmin;
     }
 }

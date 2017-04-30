@@ -1,7 +1,9 @@
 package dimulski.areas.users.service;
 
 import dimulski.areas.users.entities.User;
+import dimulski.areas.users.models.bindingModels.EditUserBindingModel;
 import dimulski.areas.users.models.bindingModels.RegisterUserBindingModel;
+import dimulski.areas.users.models.contracts.BasicUserModel;
 import dimulski.areas.users.models.viewModels.UserViewModel;
 import dimulski.areas.users.repositories.UserRepository;
 import dimulski.areas.users.service.contracts.UserService;
@@ -59,12 +61,28 @@ public class UserServiceImpl implements UserService {
         return userViewModels;
     }
 
-    private void setIsAdmin(User user, UserViewModel userViewModel) {
+    @Override
+    public EditUserBindingModel findById(Long id) {
+        User user = this.userRepository.findOne(id);
+        EditUserBindingModel editUserBindingModel = this.modelMapper.map(user, EditUserBindingModel.class);
+        setIsAdmin(user, editUserBindingModel);
+        
+        return editUserBindingModel;
+    }
+
+    @Override
+    public void save(EditUserBindingModel editUserBindingModel) {
+        User user = this.modelMapper.map(editUserBindingModel, User.class);
+        user.setPassword(this.userRepository.findOne(editUserBindingModel.getId()).getPassword());
+        this.userRepository.save(user);
+    }
+
+    private void setIsAdmin(User user, BasicUserModel userModel) {
         if (user.getAuthorities().stream().filter(r -> r.getAuthority().equals("ROLE_ADMIN"))
                 .findFirst().orElse(null) != null) {
-            userViewModel.setIsAdmin(true);
+            userModel.setIsAdmin(true);
         } else {
-            userViewModel.setIsAdmin(false);
+            userModel.setIsAdmin(false);
         }
     }
 }
