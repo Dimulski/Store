@@ -75,4 +75,11 @@ public class UserController { // should be split
         
         return "redirect:/users";
     }
+    
+    @GetMapping("/users/delete/{userId}")
+    public String deleteUser(@PathVariable long userId, Model model) {
+        this.userService.deleteById(userId);
+        
+        return "redirect:/users";
+    }
 }

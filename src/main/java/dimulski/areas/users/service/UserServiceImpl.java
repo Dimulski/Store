@@ -1,5 +1,6 @@
 package dimulski.areas.users.service;
 
+import dimulski.areas.users.entities.Role;
 import dimulski.areas.users.entities.User;
 import dimulski.areas.users.models.bindingModels.EditUserBindingModel;
 import dimulski.areas.users.models.bindingModels.RegisterUserBindingModel;
@@ -15,7 +16,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -74,7 +77,19 @@ public class UserServiceImpl implements UserService {
     public void save(EditUserBindingModel editUserBindingModel) {
         User user = this.modelMapper.map(editUserBindingModel, User.class);
         user.setPassword(this.userRepository.findOne(editUserBindingModel.getId()).getPassword());
+        if (editUserBindingModel.getIsAdmin()) {
+            Role admin = new Role(); // ideally we should get the role with a RoleRepository instead of creating a new one
+            admin.setId(1L);
+            admin.setAuthority("ROLE_ADMIN");
+            user.setAuthorities(new HashSet<Role>());
+            user.getAuthorities().add(admin);
+        }
         this.userRepository.save(user);
+    }
+
+    @Override
+    public void deleteById(long userId) {
+        this.userRepository.delete(userId);
     }
 
     private void setIsAdmin(User user, BasicUserModel userModel) {

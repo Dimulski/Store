@@ -3,6 +3,7 @@ package dimulski.areas.users.entities;
 import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "roles")
@@ -13,7 +14,7 @@ public class Role implements GrantedAuthority {
     private Long id;
 
     private String authority;
-
+    
     @Override
     public String getAuthority() {
         return authority;

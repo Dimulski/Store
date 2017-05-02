@@ -16,4 +16,6 @@ public interface UserService extends UserDetailsService {
     EditUserBindingModel findById(Long id);
     
     void save(EditUserBindingModel editUserBindingModel);
+    
+    void deleteById(long userId);
 }
