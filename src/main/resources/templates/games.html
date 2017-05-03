@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>Shop Homepage</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.min.css}"/>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{bootstrap/css/shop-homepage.css}"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!-- Navigation -->
+<header th:replace="fragments/parts::menu">
+</header>
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Genres</p>
+            <div class="list-group">
+                <a href="#" class="list-group-item">Action</a>
+                <a href="#" class="list-group-item">Adventure</a>
+                <a href="#" class="list-group-item">Horror</a>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-sm-4 col-lg-4 col-md-4" th:each="game : ${games}" th:object="${game}">
+                    <div class="thumbnail">
+                        <img src="https://upload.wikimedia.org/wikipedia/en/6/66/WarcraftIII.jpg" alt="Warcraft 3"/>
+                        <div class="caption">
+                            <h4 class="pull-right" th:text="*{price}">Price</h4>
+                            <h4><a href="#" th:text="*{name}">Name</a>
+                            </h4>
+                            <p th:text="*{description}">Description</p>
+                        </div>
+                        <div class="ratings">
+                            <p class="pull-right">15 reviews</p>
+                            <p>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container -->
+<div class="container">
+    <hr/>
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Codex Store 2017</p>
+            </div>
+        </div>
+    </footer>
+</div>
+<!-- /.container -->
+
+<!-- jQuery -->
+<script th:src="@{bootstrap/js/jquery.js}"></script>
+<!-- Bootstrap Core JavaScript -->
+<script th:src="@{bootstrap/js/bootstrap.js}"></script>
+</body>
+</html>
