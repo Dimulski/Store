@@ -20,11 +20,9 @@ public class Game {
     @Column(columnDefinition = "TEXT")
     private String description;
     
-    @Column(columnDefinition = "LONGBLOB")
-    private byte[] bigPicture;
+    private String bigPicture;
     
-    @Column(columnDefinition = "LONGBLOB")
-    private byte[] smallPicture;
+    private String smallPicture;
     
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "games_genres",
@@ -64,19 +62,19 @@ public class Game {
         this.description = description;
     }
 
-    public byte[] getBigPicture() {
+    public String getBigPicture() {
         return bigPicture;
     }
 
-    public void setBigPicture(byte[] bigPicture) {
+    public void setBigPicture(String bigPicture) {
         this.bigPicture = bigPicture;
     }
 
-    public byte[] getSmallPicture() {
+    public String getSmallPicture() {
         return smallPicture;
     }
 
-    public void setSmallPicture(byte[] smallPicture) {
+    public void setSmallPicture(String smallPicture) {
         this.smallPicture = smallPicture;
     }
 

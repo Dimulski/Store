@@ -10,7 +10,7 @@ public class SmallGameViewModel {
     
     private String description;
     
-    private byte[] smallPicture;
+    private String smallPicture;
 
     public Long getId() {
         return id;
@@ -44,11 +44,11 @@ public class SmallGameViewModel {
         this.description = description;
     }
 
-    public byte[] getSmallPicture() {
+    public String getSmallPicture() {
         return smallPicture;
     }
 
-    public void setSmallPicture(byte[] smallPicture) {
+    public void setSmallPicture(String smallPicture) {
         this.smallPicture = smallPicture;
     }
 }

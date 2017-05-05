@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'/>
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet"/>
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Edit Genre</title>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css"/>
+    
+    
+    <link rel="stylesheet" href="../../bootstrap/css/users.css"/>
+</head>
+<body>
+<header th:replace="fragments/parts::menu">
+</header>
+<main>
+    <form method="post" class="form-horizontal top-space" th:object="${editGenreBindingModel}">
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="name">Name</label>
+            <div class="col-md-3">
+                <input id="name" name="name" class="form-control input-md"
+                       type="text" th:field="*{name}" th:value="*{name}"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-4 control-label"></label>
+            <div class="col-md-8">
+                <button type="submit" id="btnSave" name="btnSave" class="btn btn-success">Save</button>
+            </div>
+        </div>
+    </form>
+</main>
+<script th:src="@{/bootstrap/js/jquery.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+</body>
+</html>

@@ -40,7 +40,7 @@
             <div class="row">
                 <div class="col-sm-4 col-lg-4 col-md-4" th:each="game : ${games}" th:object="${game}">
                     <div class="thumbnail">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/6/66/WarcraftIII.jpg" alt="Warcraft 3"/>
+                        <img th:src="*{smallPicture}" th:alt="*{name}"/>
                         <div class="caption">
                             <h4 class="pull-right" th:text="*{price}">Price</h4>
                             <h4><a href="#" th:text="*{name}">Name</a>
