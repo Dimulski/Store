@@ -3,12 +3,12 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'/>
 <head>
     <meta charset="UTF-8"/>
-    <title>Genres</title>
+    <title>Games Table</title>
     <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css" th:href="@{bootstrap/css/bootstrap.min.css}"/>
-    
-    
+
+
     <link rel="stylesheet" th:href="@{bootstrap/css/users.css}"/>
-    
+
 </head>
 <body>
 <header th:replace="fragments/parts::menu">
@@ -20,10 +20,10 @@
                 <div class="panel-heading">
                     <div class="row">
                         <div class="col col-xs-6 table-name">
-                            <h3 class="panel-title">Genres</h3>
+                            <h3 class="panel-title">All Games</h3>
                         </div>
                         <div class="col col-xs-6 text-right">
-                            <a href="/genres/create" class="btn btn-sm btn-primary btn-create">Create New</a>
+                            <a href="/games/create" class="btn btn-sm btn-primary btn-create">Create New</a>
                         </div>
                     </div>
                 </div>
@@ -34,16 +34,18 @@
                             <th width="17%"><em class="fa fa-cog"></em></th>
                             <th class="hidden-xs" width="5%">ID</th>
                             <th>Name</th>
+                            <th>Price</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="genre : ${genres}" th:object="${genre}">
+                        <tr th:each="game : ${games}" th:object="${game}">
                             <td align="center">
-                                <a class="btn btn-default" th:href="|/genres/edit/*{id}|"><em class="fa fa-pencil"></em></a>
-                                <a class="btn btn-danger" th:href="|/genres/delete/*{id}|"><em class="fa fa-trash"></em></a>
+                                <a class="btn btn-default" th:href="|/games/edit/*{id}|"><em class="fa fa-pencil"></em></a>
+                                <a class="btn btn-danger" th:href="|/games/delete/*{id}|"><em class="fa fa-trash"></em></a>
                             </td>
                             <td class="hidden-xs" th:text="*{id}">Id</td>
                             <td th:text="*{name}">Name</td>
+                            <td th:text="*{price}">Price</td>
                         </tr>
                         </tbody>
                     </table>

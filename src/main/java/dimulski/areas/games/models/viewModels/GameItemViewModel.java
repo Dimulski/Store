@@ -1,13 +1,12 @@
-package dimulski.areas.games.models.bindingModels;
+package dimulski.areas.games.models.viewModels;
 
-import javax.validation.constraints.Size;
-
-public class EditGenreBindingModel {
+public class GameItemViewModel {
     
     private Long id;
     
-    @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
     private String name;
+    
+    private Double price;
 
     public Long getId() {
         return id;
@@ -23,5 +22,13 @@ public class EditGenreBindingModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }

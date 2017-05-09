@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public EditUserBindingModel findById(Long id) {
+    public EditUserBindingModel findById(long id) {
         User user = this.userRepository.findOne(id);
         EditUserBindingModel editUserBindingModel = this.modelMapper.map(user, EditUserBindingModel.class);
         setIsAdmin(user, editUserBindingModel);

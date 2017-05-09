@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>Shop Item</title>
+
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css"/>
+
+
+    <link rel="stylesheet" href="../../bootstrap/css/shop-homepage.css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!-- Navigation -->
+<header th:replace="fragments/parts::menu">
+</header>
+<!-- Page Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">Genres</p>
+            <div class="list-group">
+                <a href="/games" class="list-group-item">All</a>
+                <a th:href="'/' + *{name}" class="list-group-item" th:text="*{name}" th:each="genre : ${genres}" th:object="${genre}">Genre Name</a>
+            </div>
+        </div>
+        <div class="col-md-9" th:object="${gameDetailsViewModel}">
+            <div class="thumbnail">
+                <a th:href="'/games/' + *{id}"> <img th:src="*{bigPicture + '.jpg'}" th:alt="*{name}"/></a>
+                <div class="caption-full">
+                    <h4 class="pull-right" th:text="'$' + *{price}">Price</h4>
+                    <h4><a th:href="'/games/' + *{id}" th:text="*{name}">Product Name</a>
+                    </h4>
+                    <p th:text="*{description}">Description</p>
+                    <a class="btn btn-success">Add to Cart</a>
+                </div>
+                
+                <!--<div class="ratings">-->
+                    <!--<p class="pull-right">3 reviews</p>-->
+                    <!--<p>-->
+                        <!--<span class="glyphicon glyphicon-star"></span>-->
+                        <!--<span class="glyphicon glyphicon-star"></span>-->
+                        <!--<span class="glyphicon glyphicon-star"></span>-->
+                        <!--<span class="glyphicon glyphicon-star"></span>-->
+                        <!--<span class="glyphicon glyphicon-star-empty"></span>-->
+                        <!--4.0 stars-->
+                    <!--</p>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="well">-->
+                <!--<div class="text-right">-->
+                    <!--<a class="btn btn-success">Leave a Review</a>-->
+                <!--</div>-->
+                <!--<hr/>-->
+                <!--<div class="row">-->
+                    <!--<div class="col-md-12">-->
+                        <!--<span class="glyphicon glyphicon-star"></span>-->
+                        <!--<span class="glyphicon glyphicon-star"></span>-->
+                        <!--<span class="glyphicon glyphicon-star"></span>-->
+                        <!--<span class="glyphicon glyphicon-star"></span>-->
+                        <!--<span class="glyphicon glyphicon-star-empty"></span>-->
+                        <!--Anonymous-->
+                        <!--<span class="pull-right">10 days ago</span>-->
+                        <!--<p>This product was great in terms of quality. I would definitely buy another!</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<hr/>-->
+                <!--<div class="row">-->
+                    <!--<div class="col-md-12">-->
+                        <!--<span class="glyphicon glyphicon-star"></span>-->
+                        <!--<span class="glyphicon glyphicon-star"></span>-->
+                        <!--<span class="glyphicon glyphicon-star"></span>-->
+                        <!--<span class="glyphicon glyphicon-star"></span>-->
+                        <!--<span class="glyphicon glyphicon-star-empty"></span>-->
+                        <!--Anonymous-->
+                        <!--<span class="pull-right">12 days ago</span>-->
+                        <!--<p>I've alredy ordered another one!</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<hr/>-->
+                <!--<div class="row">-->
+                    <!--<div class="col-md-12">-->
+                        <!--<span class="glyphicon glyphicon-star"></span>-->
+                        <!--<span class="glyphicon glyphicon-star"></span>-->
+                        <!--<span class="glyphicon glyphicon-star"></span>-->
+                        <!--<span class="glyphicon glyphicon-star"></span>-->
+                        <!--<span class="glyphicon glyphicon-star-empty"></span>-->
+                        <!--Anonymous-->
+                        <!--<span class="pull-right">15 days ago</span>-->
+                        <!--<p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>-->
+                    <!--</div>-->
+                <!--</div>-->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.container -->
+<div class="container">
+    <hr/>
+    <!-- Footer -->
+    <footer>
+        <div class="row">
+            <div class="col-lg-12">
+                <p>Copyright &copy; Codex Store 2017</p>
+            </div>
+        </div>
+    </footer>
+</div>
+<!-- /.container -->
+
+<!-- jQuery -->
+<script th:src="@{bootstrap/js/jquery.js}"></script>
+<!-- Bootstrap Core JavaScript -->
+<script th:src="@{bootstrap/js/bootstrap.js}"></script>
+</body>
+</html>

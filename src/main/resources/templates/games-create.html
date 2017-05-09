@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'/>
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet"/>
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Create Game</title>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css"/>
+
+
+    <link rel="stylesheet" href="../../bootstrap/css/users.css"/>
+</head>
+<body>
+<header th:replace="fragments/parts::menu">
+</header>
+<main>
+    <form method="post" class="form-horizontal top-space" th:object="${editGameBindingModel}">
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="name">Name</label>
+            <div class="col-md-3">
+                <input id="name" name="name" class="form-control input-md"
+                       type="text" th:field="*{name}"/>
+                <div class="error-message" th:each="error : ${#fields.errors('name')}" th:text="${error}"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="name">Price</label>
+            <div class="col-md-3">
+                <input id="price" name="price" class="form-control input-md"
+                       type="text" th:field="*{price}"/>
+                <div class="error-message" th:each="error : ${#fields.errors('price')}" th:text="${error}"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="name">Description</label>
+            <div class="col-md-3">
+                <input id="description" name="description" class="form-control input-md"
+                       type="text" th:field="*{description}"/>
+                <div class="error-message" th:each="error : ${#fields.errors('description')}" th:text="${error}"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="name">Big Picture</label>
+            <div class="col-md-3">
+                <input id="bigPicture" name="bigPicture" class="form-control input-md"
+                       type="text" th:field="*{bigPicture}"/>
+                <div class="error-message" th:each="error : ${#fields.errors('bigPicture')}" th:text="${error}"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="name">Small Picture</label>
+            <div class="col-md-3">
+                <input id="smallPicture" name="smallPicture" class="form-control input-md"
+                       type="text" th:field="*{smallPicture}"/>
+                <div class="error-message" th:each="error : ${#fields.errors('smallPicture')}" th:text="${error}"></div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="name">Genres</label>
+            <div class="col-md-3">
+                <select multiple="true" class="form-control" id="genres" name="genres" th:field="*{genres}">
+                    <option th:each="genre : ${genres}" th:value="${genre.name}" th:text="${genre.name}">Option 1</option>
+                </select>
+                <small id="capHelp" class="form-control-feedback" th:each="error : ${#fields.errors('genres')}" th:text="${error}">Error Message</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-4 control-label"></label>
+            <div class="col-md-8">
+                <button type="submit" id="btnSave" name="btnSave" class="btn btn-success">Save</button>
+            </div>
+        </div>
+    </form>
+</main>
+<script th:src="@{/bootstrap/js/jquery.js}"></script>
+<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+</body>
+</html>

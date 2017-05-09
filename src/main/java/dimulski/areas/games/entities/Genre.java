@@ -1,11 +1,12 @@
 package dimulski.areas.games.entities;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "genres")
-public class Genre {
+public class Genre implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,7 +14,7 @@ public class Genre {
     
     private String name;
 
-    @ManyToMany(mappedBy = "genres", targetEntity = Game.class, cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "genres", targetEntity = Game.class, cascade = CascadeType.DETACH)
     private Set<Game> games;
     
     public Long getId() {

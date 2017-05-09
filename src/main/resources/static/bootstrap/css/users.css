@@ -56,3 +56,15 @@
     width: 74px;
     padding-top: 6px;
 }
+
+.error-message-beneath{
+    padding-bottom: 10px;
+}
+
+.error-message{
+    color: red;
+}
+
+.has-danger {
+    color: #red;
+}

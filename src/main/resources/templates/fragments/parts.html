@@ -30,6 +30,9 @@
                         <li sec:authorize="hasRole('ADMIN')">
                             <a href="/genres">Genres</a>
                         </li>
+                        <li sec:authorize="hasRole('ADMIN')">
+                            <a href="/games-table">Games Table</a>
+                        </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item pull-xs-right" sec:authorize="isAnonymous()">

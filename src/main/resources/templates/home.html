@@ -31,9 +31,7 @@
             <div class="col-md-3">
                 <p class="lead">Genres</p>
                 <div class="list-group">
-                    <a href="#" class="list-group-item">Action</a>
-                    <a href="#" class="list-group-item">Adventure</a>
-                    <a href="#" class="list-group-item">Horror</a>
+                    <a href="#" class="list-group-item" th:text="*{name}" th:each="genre : ${genres}" th:object="${genre}">Genre Name</a>
                 </div>
             </div>
             <div class="col-md-9">

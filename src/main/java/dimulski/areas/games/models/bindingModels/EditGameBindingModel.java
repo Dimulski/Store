@@ -1,35 +1,26 @@
-package dimulski.areas.games.entities;
+package dimulski.areas.games.models.bindingModels;
 
-import org.hibernate.annotations.Type;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-import javax.persistence.*;
-import java.io.Serializable;
-import java.util.Set;
-
-@Entity
-@Table(name = "games")
-public class Game implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class EditGameBindingModel {
     
+    private Long id;
+
+    @NotNull
+    @Size(min = 3, max = 50, message = "Invalid name")
     private String name;
     
     private Double price;
     
-    @Column(columnDefinition = "TEXT")
     private String description;
     
     private String bigPicture;
     
     private String smallPicture;
     
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
-    @JoinTable(name = "games_genres",
-    joinColumns = @JoinColumn(name = "game_id"),
-    inverseJoinColumns = @JoinColumn(name = "genre_id"))
-    private Set<Genre> genres;
+    @Size(min = 1, message = "You must at least one genre")
+    private String[] genres;
 
     public Long getId() {
         return id;
@@ -78,12 +69,12 @@ public class Game implements Serializable {
     public void setSmallPicture(String smallPicture) {
         this.smallPicture = smallPicture;
     }
-
-    public Set<Genre> getGenres() {
+    
+    public String[] getGenres() {
         return genres;
     }
 
-    public void setGenres(Set<Genre> genres) {
+    public void setGenres(String[] genres) {
         this.genres = genres;
     }
 }

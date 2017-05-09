@@ -9,10 +9,10 @@
 
     <title>Shop Homepage</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.min.css}"/>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" th:href="@{bootstrap/css/shop-homepage.css}"/>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css"/>
+
+
+    <link rel="stylesheet" href="../../bootstrap/css/shop-homepage.css"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,19 +31,19 @@
         <div class="col-md-3">
             <p class="lead">Genres</p>
             <div class="list-group">
-                <a href="#" class="list-group-item">Action</a>
-                <a href="#" class="list-group-item">Adventure</a>
-                <a href="#" class="list-group-item">Horror</a>
+                <a href="/games" class="list-group-item">All</a>
+                <a th:href="'/games/genre/' + *{name}" class="list-group-item" th:text="*{name}" th:each="genre : ${genres}" th:object="${genre}">Genre Name</a>
             </div>
         </div>
         <div class="col-md-9">
             <div class="row">
                 <div class="col-sm-4 col-lg-4 col-md-4" th:each="game : ${games}" th:object="${game}">
                     <div class="thumbnail">
-                        <img th:src="*{smallPicture}" th:alt="*{name}"/>
+                        <a th:href="'/games/' + *{id}"> <img th:src="*{smallPicture + '.jpg'}" th:alt="*{name}"/></a>
+                        <!--<img th:src="*{smallPicture}" th:alt="*{name}"/>-->
                         <div class="caption">
                             <h4 class="pull-right" th:text="*{price}">Price</h4>
-                            <h4><a href="#" th:text="*{name}">Name</a>
+                            <h4><a th:href="'/games/' + *{id}" th:text="*{name}">Name</a>
                             </h4>
                             <p th:text="*{description}">Description</p>
                         </div>

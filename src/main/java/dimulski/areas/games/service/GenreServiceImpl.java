@@ -2,6 +2,7 @@ package dimulski.areas.games.service;
 
 import dimulski.areas.games.entities.Genre;
 import dimulski.areas.games.models.bindingModels.EditGenreBindingModel;
+import dimulski.areas.games.models.viewModels.GenreNameViewModel;
 import dimulski.areas.games.models.viewModels.GenreViewModel;
 import dimulski.areas.games.repositories.GenreRepository;
 import dimulski.areas.games.service.contracts.GenreService;
@@ -10,7 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class GenreServiceImpl implements GenreService {
@@ -34,10 +37,33 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public EditGenreBindingModel findById(Long id) {
+    public EditGenreBindingModel findById(long id) {
         Genre genre = this.genreRepository.findOne(id);
         EditGenreBindingModel editGenreBindingModel = this.modelMapper.map(genre, EditGenreBindingModel.class);
         
         return editGenreBindingModel;
+    }
+
+    @Override
+    public void save(EditGenreBindingModel editGenreBindingModel) {
+        Genre genre = this.modelMapper.map(editGenreBindingModel, Genre.class);
+        this.genreRepository.save(genre);
+    }
+
+    @Override
+    public void deleteById(long id) {
+        this.genreRepository.delete(id);
+    }
+
+    @Override
+    public Set<GenreNameViewModel> getAllGenres() {
+        Set<GenreNameViewModel> genreModels = new HashSet<>();
+        Set<Genre> genres = this.genreRepository.findAllAsSet();
+        for (Genre genre : genres) {
+            GenreNameViewModel genreNameViewModel = this.modelMapper.map(genre, GenreNameViewModel.class);
+            genreModels.add(genreNameViewModel);
+        }
+
+        return genreModels;
     }
 }

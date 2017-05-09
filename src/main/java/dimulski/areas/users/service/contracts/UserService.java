@@ -13,7 +13,7 @@ public interface UserService extends UserDetailsService {
 
     List<UserViewModel> findAll();
     
-    EditUserBindingModel findById(Long id);
+    EditUserBindingModel findById(long id);
     
     void save(EditUserBindingModel editUserBindingModel);
     

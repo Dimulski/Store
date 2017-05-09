@@ -63,7 +63,7 @@ public class UserController { // should be split
     }
     
     @PostMapping("/users/edit/{userId}")
-    public String getEditVirusPage(@PathVariable long userId,
+    public String getEditUserPage(@PathVariable long userId,
                                    @Valid @ModelAttribute EditUserBindingModel editUserBindingModel, 
                                    BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
