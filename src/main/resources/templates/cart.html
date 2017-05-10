@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>Shop Item</title>
+
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css"/>
+
+
+    <link rel="stylesheet" href="../../bootstrap/css/shop-homepage.css"/>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<!-- Navigation -->
+<header th:replace="fragments/parts::menu">
+</header>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-10 col-md-offset-1">
+            <table class="table table-hover" style="text-align: center">
+                <thead>
+                <tr>
+                    <th>Game</th>
+                    <th></th>
+                    <th class="text-center"></th>
+                    <th class="text-center">Price</th>
+                    <th> </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="game :${games}" th:object="${game}">
+                    <td class="col-sm-2 col-md-2 col-lg-2">
+                        <div class="media">
+                            <a class="thumbnail" th:href="'/games/' + *{id}"> <img class="media-object" th:src="*{smallPicture + '.jpg'}" th:alt="*{name}"/> </a>
+                            <div class="media-body">
+                                <h4 class="media-heading" style="text-align: left"><a th:href="'/games/' + *{id}" th:text="*{name}"></a></h4>
+                                <h5 class="media-heading"><a href="#"></a></h5>
+                                <span></span><span class="text-success"><strong></strong></span>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="col-sm-1 col-md-1" style="text-align: center">
+                    </td>
+                    <td class="col-sm-1 col-md-1 text-center"></td>
+                    <td class="col-sm-1 col-md-1 text-center" style="vertical-align: middle; font-size: 19px"><strong th:text="'$' + *{price}"></strong></td>
+                    <td class="col-sm-1 col-md-1" style="vertical-align: middle">
+                        <a th:href="'/cart/remove/' + *{id}">
+                            <button type="button" class="btn btn-danger">
+                                <span class="glyphicon glyphicon-remove"></span> Remove
+                            </button>
+                        </a>
+                    </td>
+                        
+                        
+                </tr>
+                <tr>
+                    <td>   </td>
+                    <td>   </td>
+                    <td>   </td>
+                    <td><h3>Total</h3></td>
+                    <td><h3><strong th:text="${total}"></strong></h3></td>
+                </tr>
+                <tr>
+                    <td>   </td>
+                    <td>   </td>
+                    <td>   </td>
+                    <td>
+                        <a th:href="'/games'">
+                            <button type="button" class="btn btn-default">
+                                <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                            </button>
+                        </a>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-success">
+                            Checkout <span class="glyphicon glyphicon-play"></span>
+                        </button></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- /.container -->
+
+<!-- jQuery -->
+<script th:src="@{bootstrap/js/jquery.js}"></script>
+<!-- Bootstrap Core JavaScript -->
+<script th:src="@{bootstrap/js/bootstrap.js}"></script>
+</body>
+</html>

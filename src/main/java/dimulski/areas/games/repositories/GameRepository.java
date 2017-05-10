@@ -16,4 +16,7 @@ public interface GameRepository extends CrudRepository<Game, Long> {
     
     @Query(value = "SELECT g FROM Game AS g JOIN g.genres AS ge WHERE :genre = ge.name")
     List<Game> findAllOfGenre(@Param("genre") String genre);
+    
+    @Query(value = "SELECT g FROM Game AS g JOIN g.users AS u WHERE :userId = u.id")
+    List<Game> findAllOfUser(@Param("userId") long id);
 }

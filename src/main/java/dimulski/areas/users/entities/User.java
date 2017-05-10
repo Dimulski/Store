@@ -1,5 +1,6 @@
 package dimulski.areas.users.entities;
 
+import dimulski.areas.games.entities.Game;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
@@ -25,6 +26,12 @@ public class User implements UserDetails, Serializable {
     joinColumns = @JoinColumn(name = "user_id"),
     inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> authorities;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.DETACH)
+    @JoinTable(name = "users_games",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "game_id"))
+    private Set<Game> games;
 
     public Long getId() {
         return id;
@@ -52,6 +59,14 @@ public class User implements UserDetails, Serializable {
 
     public void setAuthorities(Set<Role> authorities) {
         this.authorities = authorities;
+    }
+
+    public Set<Game> getGames() {
+        return games;
+    }
+
+    public void setGames(Set<Game> games) {
+        this.games = games;
     }
 
     @Override

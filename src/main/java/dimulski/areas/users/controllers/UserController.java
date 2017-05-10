@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -18,6 +19,14 @@ public class UserController { // should be split
 
     @Autowired
     private UserService userService;
+
+    @ModelAttribute(name = "productCount")
+    public int getUserProductCount(Principal principal) {
+        if (principal == null) {
+            return 0;
+        }
+        return this.userService.getProductCount(principal.getName());
+    }
 
     @GetMapping("/register")
     public String getRegisterPage(@ModelAttribute RegisterUserBindingModel registerUserBindingModel) {

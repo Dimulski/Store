@@ -1,5 +1,8 @@
 package dimulski.areas.users.service;
 
+import dimulski.areas.games.entities.Game;
+import dimulski.areas.games.models.viewModels.SmallGameViewModel;
+import dimulski.areas.games.repositories.GameRepository;
 import dimulski.areas.users.entities.Role;
 import dimulski.areas.users.entities.User;
 import dimulski.areas.users.models.bindingModels.EditUserBindingModel;
@@ -25,6 +28,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+    
+    @Autowired
+    private GameRepository gameRepository;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -90,6 +96,40 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteById(long userId) {
         this.userRepository.delete(userId);
+    }
+
+    @Override
+    public void addGameToUser(long gameId, String username) {
+        Game game = this.gameRepository.findOne(gameId);
+        User user = this.userRepository.findByUsername(username);
+        user.getGames().add(game);
+        this.userRepository.save(user);
+    }
+
+    @Override
+    public void removeGame(long gameId, String username) {
+        Game game = this.gameRepository.findOne(gameId);
+        User user = this.userRepository.findByUsername(username);
+        user.getGames().remove(game);
+        this.userRepository.save(user);
+    }
+
+    @Override
+    public int getProductCount(String username) {
+        return this.userRepository.findByUsername(username).getGames().size();
+    }
+
+    @Override
+    public List<SmallGameViewModel> getProducts(String username) {
+        List<SmallGameViewModel> gameViewModels = new ArrayList<>();
+        User user = this.userRepository.findByUsername(username);
+        List<Game> userGames = this.gameRepository.findAllOfUser(user.getId());
+        for (Game game : userGames) {
+            SmallGameViewModel smallGameViewModel = this.modelMapper.map(game, SmallGameViewModel.class);
+            gameViewModels.add(smallGameViewModel);
+        }
+        
+        return gameViewModels;
     }
 
     private void setIsAdmin(User user, BasicUserModel userModel) {

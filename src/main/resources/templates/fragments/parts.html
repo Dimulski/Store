@@ -21,9 +21,6 @@
                         <li>
                             <a href="/games">Games</a>
                         </li>
-                        <li>
-                            <a href="#">Sales</a>
-                        </li>
                         <li sec:authorize="hasRole('ADMIN')">
                             <a href="/users">Users</a>
                         </li>
@@ -45,7 +42,7 @@
                             <a href="/register">Register</a>
                         </li>
                         <li>
-                            <a href="#">Cart ( 0 )</a>
+                            <a href="/cart" th:text="'Cart ( ' + ${productCount} + ' )'">Cart</a>
                         </li>
                     </ul>
                 </div>

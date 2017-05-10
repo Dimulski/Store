@@ -1,5 +1,6 @@
 package dimulski.areas.games.entities;
 
+import dimulski.areas.users.entities.User;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -30,6 +31,9 @@ public class Game implements Serializable {
     joinColumns = @JoinColumn(name = "game_id"),
     inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private Set<Genre> genres;
+    
+    @ManyToMany(mappedBy = "games", targetEntity = User.class)
+    private Set<User> users;
 
     public Long getId() {
         return id;
@@ -85,5 +89,13 @@ public class Game implements Serializable {
 
     public void setGenres(Set<Genre> genres) {
         this.genres = genres;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }

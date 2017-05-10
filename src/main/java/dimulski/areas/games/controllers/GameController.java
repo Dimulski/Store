@@ -7,6 +7,7 @@ import dimulski.areas.games.models.viewModels.GenreViewModel;
 import dimulski.areas.games.models.viewModels.SmallGameViewModel;
 import dimulski.areas.games.service.contracts.GameService;
 import dimulski.areas.games.service.contracts.GenreService;
+import dimulski.areas.users.service.contracts.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.List;
 import java.util.Set;
 
@@ -28,10 +30,21 @@ public class GameController {
     
     @Autowired
     private GenreService genreService;
+    
+    @Autowired
+    private UserService userService;
 
     @ModelAttribute(name = "genres")
     public List<GenreViewModel> getGenreNames() {
         return this.genreService.findAll();
+    }
+    
+    @ModelAttribute(name = "productCount")
+    public int getUserProductCount(Principal principal) {
+        if (principal == null) {
+            return 0;
+        }
+        return this.userService.getProductCount(principal.getName());
     }
     
     @GetMapping("/games")

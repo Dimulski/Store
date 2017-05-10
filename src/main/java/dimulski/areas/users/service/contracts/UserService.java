@@ -1,5 +1,6 @@
 package dimulski.areas.users.service.contracts;
 
+import dimulski.areas.games.models.viewModels.SmallGameViewModel;
 import dimulski.areas.users.models.bindingModels.EditUserBindingModel;
 import dimulski.areas.users.models.bindingModels.RegisterUserBindingModel;
 import dimulski.areas.users.models.viewModels.UserViewModel;
@@ -18,4 +19,12 @@ public interface UserService extends UserDetailsService {
     void save(EditUserBindingModel editUserBindingModel);
     
     void deleteById(long userId);
+    
+    void addGameToUser(long gameId, String username);
+    
+    void removeGame(long gameId, String username);
+    
+    int getProductCount(String username);
+    
+    List<SmallGameViewModel> getProducts(String username);
 }
