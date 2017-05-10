@@ -1,7 +1,9 @@
 package dimulski.areas.homepage;
 
 import dimulski.areas.games.models.viewModels.GenreViewModel;
+import dimulski.areas.games.models.viewModels.SmallGameViewModel;
 import dimulski.areas.games.repositories.GenreRepository;
+import dimulski.areas.games.service.contracts.GameService;
 import dimulski.areas.games.service.contracts.GenreService;
 import dimulski.areas.users.service.contracts.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,9 @@ import java.util.List;
 public class HomeController {
 
     @Autowired
+    private GameService gameService;
+    
+    @Autowired
     private GenreService genreService;
     
     @Autowired
@@ -35,7 +40,9 @@ public class HomeController {
     @GetMapping
     public String getHomePage(Model model) {
         List<GenreViewModel> genreViewModels = this.genreService.findAll();
+        List<SmallGameViewModel> gameViewModels = this.gameService.findAll();
         model.addAttribute("genres", genreViewModels);
+        model.addAttribute("games", gameViewModels);
         
         return "home";
     }

@@ -42,20 +42,10 @@
                         <a th:href="'/games/' + *{id}"> <img th:src="*{smallPicture + '.jpg'}" th:alt="*{name}"/></a>
                         <!--<img th:src="*{smallPicture}" th:alt="*{name}"/>-->
                         <div class="caption">
-                            <h4 class="pull-right" th:text="*{price}">Price</h4>
+                            <h4 class="pull-right" th:text="'$' + *{price}">Price</h4>
                             <h4><a th:href="'/games/' + *{id}" th:text="*{name}">Name</a>
                             </h4>
                             <p th:text="*{description}">Description</p>
-                        </div>
-                        <div class="ratings">
-                            <p class="pull-right">15 reviews</p>
-                            <p>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                            </p>
                         </div>
                     </div>
                 </div>

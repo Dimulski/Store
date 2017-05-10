@@ -8,7 +8,7 @@ public class EditGameBindingModel {
     private Long id;
 
     @NotNull
-    @Size(min = 3, max = 50, message = "Invalid name")
+    @Size(min = 3, max = 20, message = "Name must be between 3 and 20 characters")
     private String name;
     
     private Double price;
@@ -19,7 +19,7 @@ public class EditGameBindingModel {
     
     private String smallPicture;
     
-    @Size(min = 1, message = "You must at least one genre")
+    @Size(min = 1, message = "You must select at least one genre")
     private String[] genres;
 
     public Long getId() {

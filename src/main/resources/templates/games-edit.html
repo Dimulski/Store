@@ -62,7 +62,7 @@
                 <select multiple="true" class="form-control" id="genres" name="genres" th:field="*{genres}">
                     <option th:each="genre : ${genres}" th:value="${genre.name}" th:text="${genre.name}">Option 1</option>
                 </select>
-                <small id="capHelp" class="form-control-feedback" th:each="error : ${#fields.errors('genres')}" th:text="${error}">Error Message</small>
+                <div class="error-message" th:each="error : ${#fields.errors('genres')}" th:text="${error}"></div>
             </div>
         </div>
         <div class="form-group">
