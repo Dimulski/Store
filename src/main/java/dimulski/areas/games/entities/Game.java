@@ -32,7 +32,7 @@ public class Game implements Serializable {
     inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private Set<Genre> genres;
     
-    @ManyToMany(mappedBy = "games", targetEntity = User.class)
+    @ManyToMany(mappedBy = "games", targetEntity = User.class, cascade = CascadeType.DETACH)
     private Set<User> users;
 
     public Long getId() {
