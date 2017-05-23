@@ -1,5 +1,6 @@
 package dimulski.areas.games.service;
 
+import dimulski.areas.games.entities.Game;
 import dimulski.areas.games.entities.Genre;
 import dimulski.areas.games.models.bindingModels.EditGenreBindingModel;
 import dimulski.areas.games.models.viewModels.GenreNameViewModel;
@@ -52,6 +53,10 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public void deleteById(long id) {
+        Genre genre = this.genreRepository.findOne(id);
+        for (Game game : genre.getGames()) {
+            game.getGenres().remove(genre);
+        }
         this.genreRepository.delete(id);
     }
 

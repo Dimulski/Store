@@ -9,6 +9,7 @@ import dimulski.areas.games.models.viewModels.SmallGameViewModel;
 import dimulski.areas.games.repositories.GameRepository;
 import dimulski.areas.games.repositories.GenreRepository;
 import dimulski.areas.games.service.contracts.GameService;
+import dimulski.areas.users.entities.User;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -102,6 +103,10 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public void deleteById(long id) {
+        Game game = this.gameRepository.findOne(id);
+        for (User user : game.getUsers()) {
+            user.getGames().remove(game);
+        }
         this.gameRepository.delete(id);
     }
 }
